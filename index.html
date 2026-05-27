@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>AI Plant Doctor</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="bg-overlay"></div>
+
+<div class="container">
+
+<div class="card">
+
+<h1>🌿 AI Plant Doctor</h1>
+
+<p class="subtitle">
+Upload a plant leaf image and detect disease instantly
+</p>
+
+<form method="POST" enctype="multipart/form-data">
+
+<label class="upload-area">
+
+<input type="file" name="image" required>
+
+<span>📁 Choose Leaf Image</span>
+
+</label>
+
+<button class="analyze-btn">
+Analyze Plant
+</button>
+
+</form>
+
+{% if result %}
+
+<div class="result-box">
+
+<img src="{{ result.image }}">
+
+<h2>{{ result.disease }}</h2>
+
+<div class="confidence-bar">
+
+<div class="confidence-fill"
+style="width: {{ result.confidence }}%">
+
+{{ result.confidence }}%
+
+</div>
+
+</div>
+
+<div class="info">
+
+<h3>Description</h3>
+
+<p>{{ result.description }}</p>
+
+<h3>Remedy</h3>
+
+<p>{{ result.remedy }}</p>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+
+</html>
